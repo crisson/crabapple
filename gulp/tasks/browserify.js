@@ -4,6 +4,7 @@ var gulp = require('gulp')
 var browserify = require("browserify");
 var babelify = require("babelify");
 var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 var bufferify = require('vinyl-buffer')
 var source = require('vinyl-source-stream');
 
@@ -38,5 +39,9 @@ gulp.task('browserify', function(){
       .require(config.browserify.entry, { entry: true })
       .bundle()
       .on("error", handleError)
-      .pipe(fs.createWriteStream(config.browserify.dest));
+      .pipe(source(config.browserify.destFilename))
+      .pipe(bufferify())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.write(config.browserify.sourcemapsDest))
+      .pipe(gulp.dest(config.browserify.dest));
 })

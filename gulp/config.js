@@ -4,15 +4,18 @@ var watchExt = '{' + ext.slice(1, ext.length - 1) + ',jade}';
 // TODO: add BrowserSync, nodemon, etc
 module.exports = {
     browserify: {
-        dest: 'build/assets/js/app.js',
         entry: "./src/app.js",
+        watch: "src/**/*.{js,jsx}",
+        dest: './build/js',
+        sourcemapsDest: './',
+        destFilename: 'app.js',
         vendor: {
-            dest: 'build/assets/js/vendor.min.js',
+            dest: 'build/js/vendor.min.js',
             destmin: './',
             opts: {},
             requireFiles: [
                 "react",
-                'react-tap-plugin',
+                'react-tap-event-plugin',
                 "material-ui",
                 "lodash"
             ]

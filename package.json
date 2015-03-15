@@ -16,7 +16,6 @@
   "author": "Crisson Jno-Charles",
   "license": "MIT",
   "dependencies": {
-    "babel": "^4.6.0",
     "bacon": "0.0.1",
     "lodash": "^3.5.0",
     "material-ui": "^0.7.1",
@@ -25,6 +24,7 @@
     "superagent": "^1.1.0"
   },
   "devDependencies": {
+    "babel": "^4.6.0",
     "babelify": "^5.0.3",
     "browserify": "^9.0.3",
     "chai": "^2.1.0",

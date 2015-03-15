@@ -1,6 +1,9 @@
 var ext = "{png,ico,jpeg,jpg,gif,svg,jade,woff,woff2,ttf,txt}";
 var watchExt = '{' + ext.slice(1, ext.length - 1) + ',jade}';
 
+var defaultDependencies = Object.keys(require('../package.json').dependencies);
+var dependencies = defaultDependencies.concat(['react-tap-event-plugin']);
+
 // TODO: add BrowserSync, nodemon, etc
 module.exports = {
     browserify: {
@@ -13,12 +16,7 @@ module.exports = {
             dest: 'build/js/vendor.min.js',
             destmin: './',
             opts: {},
-            requireFiles: [
-                "react",
-                'react-tap-event-plugin',
-                "material-ui",
-                "lodash"
-            ]
+            requireFiles: dependencies
         }
     },
 

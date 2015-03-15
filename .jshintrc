@@ -1,0 +1,8 @@
+{
+    "esnext": true,
+    "asi": true,
+    "unused": true,
+    "undef": true,
+    "browser": true,
+    "node": true
+}

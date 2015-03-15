@@ -2,11 +2,11 @@ import React from 'react';
 
 export default React.createClass({
 
-    displayName: 'EmptyCell',
+    displayName: 'SpecialCell',
 
     render() {
         return (
-            <div className="cell is-empty"/>
+            <div />
         );
     }
 

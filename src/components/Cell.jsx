@@ -2,15 +2,19 @@ import lodash from 'lodash'
 
 import React from 'react';
 
-import {Paper} from 'material-ui'
-
-const letters = lodash.toArray('abcdefghijklmnopqrstuvwxyz').map(_ => _.toUpperCase())
+import {Paper, Mixins} from 'material-ui'
 
 export default React.createClass({
 
     displayName: 'Cell',
 
+    mixins: [Mixins.Classable],
+
     getDefaultProps() {
+        return {};
+    },
+
+    getInitialState() {
         return {};
     },
 
@@ -21,11 +25,12 @@ export default React.createClass({
     },
 
     render() {
-        let value = letters[lodash.random(letters.length - 1)]
+        let {value} = this.props
+        let contentClasses = this.getClasses('cell-content', {})
 
         return (
             <div className="cell">
-                <span className="cell-content">
+                <span className={contentClasses} >
                     <Paper zDepth={1}> {value} </Paper>
                 </span>
             </div>

@@ -1,6 +1,12 @@
 var gulp = require('gulp');
-var config = require('../config')
+var lessConfig = require('../config').less
+var lessAlienConfig = require('../config').lessAlien
+var config = require('../config').browserify
+var copyConfig = require('../config').copy
 
 gulp.task('watch', ['build'], function(){
-	// gulp.watch(config.browserify.watch, { interval: 500 }, ['browserify'])
+    gulp.watch(lessConfig.watch, ['less'])
+    gulp.watch(lessAlienConfig.watch, ['less-alien'])
+	gulp.watch(copyConfig.watch, ['copy'])
+    return gulp.watch(config.watch, { interval: 500 }, ['browserify'])
 })

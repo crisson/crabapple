@@ -3,9 +3,9 @@ var gulp = require('gulp'),
     authprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps')
 
-var config = require('../config').less
+var config = require('../config').lessAlien
 
-gulp.task('less', function(){
+gulp.task('less-alien', function(){
     return gulp.src(config.src)
         .pipe(sourcemaps.init())
         .pipe(less())

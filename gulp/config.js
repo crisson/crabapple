@@ -42,6 +42,11 @@ module.exports = {
         prefix: 1,
         watch: "assets/**/*." + watchExt
     },
+    jade: {
+        src: 'assets/*.jade',
+        dest: 'build/',
+        watch: 'assets/*.jade'
+    },
     img: {
 
     },

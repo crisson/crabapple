@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppCanvas, AppBar} from 'material-ui'
+import {AppCanvas, AppBar, FlatButton, FontIcon} from 'material-ui'
 
 import Body from '@scrabble/components/Body.jsx'
 
@@ -8,9 +8,16 @@ export default React.createClass({
     displayName: 'App',
 
     render() {
+        let githubIcon = (
+            <FlatButton className="github-icon-button" linkButton={true} href="https://github.com/crisson/scrabble" secondary={true}>
+              <FontIcon className="muidocs-icon-custom-github"/>
+              <span className="mui-flat-button-label">Github</span>
+            </FlatButton>
+        )
+
         return (
             <div>
-                <AppBar title="Scrabble"/>
+                <AppBar title="Scrabble Time" iconElementRight={githubIcon}/>
                 <AppCanvas className="wrapper">
                     <Body />
                 </AppCanvas>

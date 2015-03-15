@@ -14,15 +14,15 @@ export default React.createClass({
                     <Deck name="Player 1"/>
                 </div>
                 <div className="center-content">
-                    <div className="center-content-section center-content-left">
+                    {/*<div className="center-content-section center-content-left">
                         <Deck name="Player 1"/>
-                    </div>
+                    </div> */}
                     <div className="center-content-section center-content-middle">
                         <Board />
                     </div>
-                    <div className="center-content-section center-content-right">
+                    {/*<div className="center-content-section center-content-right">
                         <Deck name="Player 1"/>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="bottom-content">
                     <Deck name="Player 1" />

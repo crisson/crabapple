@@ -16,7 +16,8 @@
   "author": "Crisson Jno-Charles",
   "license": "MIT",
   "dependencies": {
-    "bacon": "0.0.1",
+    "baconjs": "^0.7.53",
+    "localforage": "^1.2.2",
     "lodash": "^3.5.0",
     "material-ui": "^0.7.1",
     "react": "^0.12.2",

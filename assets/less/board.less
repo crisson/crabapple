@@ -30,6 +30,7 @@
     font-size: 1.4rem;
     height: 100%;
     width: 100%;
+    border: 1px solid #ffffff;
 }
 
 .cell-content:hover {
@@ -39,6 +40,18 @@
 
 .cell.is-empty {
     background-color: #f9f9f9;
+    // border: 1px solid #ffffff;
+    color: #f9f9f9;
     line-height: 3;
-    font-size: 1.4rem;
+    font-size: 1rem;
+
+    .cell-content {
+        background-color: #f9f9f9;
+        border: 1px solid #ffffff;
+    }
+    
+    &:hover .cell-content {
+        border: 1px solid #e3e3e3;
+
+    }
 }

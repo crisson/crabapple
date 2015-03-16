@@ -36,7 +36,7 @@ export default React.createClass({
 
         return (
             <div>
-                <AppBar title="Crabapple Time" iconElementRight={githubIcon}/>
+                { /* <AppBar title="Crabapple Time" iconElementRight={githubIcon}/> */ }
                 <AppCanvas className="wrapper">
                     {content}
                 </AppCanvas>

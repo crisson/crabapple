@@ -3,7 +3,7 @@ import lodash from 'lodash'
 import React from 'react';
 import {DragDropMixin} from 'react-dnd'
 
-import {Paper, Mixins} from 'material-ui'
+import {Paper, Mixins, FlatButton} from 'material-ui'
 
 import Crabapple from '@scrabble/service'
 
@@ -202,17 +202,23 @@ export default React.createClass({
         };
     },
 
+    getInitialState() {
+        return {
+            checkButtonDisabled:  false
+        };
+    },
+
     propTypes: {
         players: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
     },
 
-    getInitialState() {
-        return {
-        };
+    handleCheckWord(){
+
     },
 
     render() {
         let {players} = this.props
+        let {checkButtonDisabled} = this.state
         let classNames = this.getClasses('deck', {})
         let humanPlayerInfo = lodash.find(players, 'isHuman')
 
@@ -220,6 +226,7 @@ export default React.createClass({
             <span className={classNames}>
                 <PlayerList players={players}/>
                 <TileList tiles={humanPlayerInfo.deck}/>
+                <FlatButton label="Check Words" primary={true} disabled={checkButtonDisabled}/>
             </span>
         );
     }

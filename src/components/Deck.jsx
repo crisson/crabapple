@@ -5,7 +5,7 @@ import {DragDropMixin} from 'react-dnd'
 
 import {Paper, Mixins, FlatButton} from 'material-ui'
 
-import Crabapple from '@scrabble/service'
+import Crabapple from '@crabapple/service'
 
 
 const PlayerData = React.createClass({

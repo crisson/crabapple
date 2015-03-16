@@ -8,7 +8,7 @@ import {DragDropMixin} from 'react-dnd'
 
 import Cell from './Cell.jsx'
 
-import Crabapple from '@scrabble/service'
+import Crabapple from '@crabapple/service'
 
 const itemDropTarget = {
   acceptDrop(component, item) {

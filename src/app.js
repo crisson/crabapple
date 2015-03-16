@@ -4,6 +4,6 @@ import React from 'react'
 
 reactTapEventPlugin()
 
-import Homepage from '@scrabble/Homepage.jsx'
+import Homepage from '@crabapple/Homepage.jsx'
 
 React.render(<Homepage />, document.querySelector('#app'))

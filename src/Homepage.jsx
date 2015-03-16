@@ -1,10 +1,10 @@
 import React from 'react';
 import {AppCanvas, AppBar, FlatButton, FontIcon} from 'material-ui'
 
-import Body from '@scrabble/components/Body.jsx'
-import Spinner from '@scrabble/components/Spinner.jsx'
+import Body from '@crabapple/components/Body.jsx'
+import Spinner from '@crabapple/components/Spinner.jsx'
 
-import Crabapple from '@scrabble/service'
+import Crabapple from '@crabapple/service'
 
 export default React.createClass({
 

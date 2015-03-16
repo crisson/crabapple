@@ -1,1 +1,1 @@
-# Simple game of Scrabble
+# Simple game of Crabapple

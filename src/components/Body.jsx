@@ -4,27 +4,18 @@ import BaconMixin from 'react-bacon'
 import Deck from './Deck.jsx'
 import Board from './Board.jsx'
 
-import Crabapple from '@scrabble/service'
-
 export default React.createClass({
 
     displayName: 'Body',
 
     Mixins: [BaconMixin],
 
-    getInitialState() {
-        return {
-            gameState: Crabapple.gameStatePrototype
-        };
-    },
-
-    componentDidMount(){
-        let gs = Crabapple.getOrCreateGame()
-        gs.onValue(gameState => this.setState({gameState}))
+    propTypes: {
+        gameState: React.PropTypes.object.isRequired
     },
 
     render() {
-        let {board, playerInfo} = this.state.gameState
+        let {board, playerInfo} = this.props.gameState
         return (
             <div className="content">
                 <div className="top-content">

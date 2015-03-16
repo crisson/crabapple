@@ -1,0 +1,250 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  font-family: 'Roboto', 'HelveticaNeue-Light', 'HelveticaNeue', 'Helvetica', arial, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+.wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+.center-content {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.center-content-section {
+  display: table-cell;
+}
+.center-content-left,
+.center-content-right {
+  padding: 10% 2%;
+  vertical-align: middle;
+}
+.top-content,
+.bottom-content {
+  display: inline-block;
+  padding: 2% 5%;
+  width: 100%;
+}
+/**
+ * @see http://graysonderitis.com/chrome-invisible-text-css-bug-fix-font-face/
+ */
+.deck {
+  -webkit-animation-duration: 0.1s;
+  -webkit-animation-name: fontfix;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-delay: 0.1s;
+}
+@-webkit-keyframes fontfix {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.github-icon-button {
+  float: right;
+  margin-right: -16px;
+}
+.deck {
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  width: 100%;
+}
+.tile-lst {
+  display: inline-block;
+  width: 80%;
+}
+.tile-lst-content {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.tile {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 0;
+  height: 80px;
+  width: 80px;
+  background-color: #f9f9f9;
+  border: 1px solid #f9f9f9;
+}
+.tile > .mui-paper-container {
+  position: relative;
+}
+.tile-letter {
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 80px;
+  font-size: 1.4rem;
+  height: 100%;
+  width: 100%;
+  text-transform: uppercase;
+}
+.tile-points {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  color: #858585;
+  font-size: .7rem;
+}
+.tile:hover {
+  border: 1px solid #006064;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.tile.is-in-working-set:hover {
+  cursor: not-allowed;
+}
+.player-lst {
+  width: 10%;
+  text-align: left;
+  display: inline-table;
+}
+.player-data {
+  display: table-row;
+  width: 100%;
+}
+.player-name {
+  display: table-cell;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.player-points {
+  display: table-cell;
+}
+.deck-player-name {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.board {
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 100%;
+}
+.board > .mui-paper-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+}
+.cell {
+  padding: 5px;
+  width: 6.66%;
+  height: 6.66%;
+}
+.cell-letter {
+  line-height: 80px;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+.cell-points {
+  position: absolute;
+  left: 5px;
+  bottom: 0;
+  font-size: .7rem;
+}
+.cell-content {
+  background-color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 1.4rem;
+  height: 80px;
+  width: 100%;
+  border: 1px solid #ffffff;
+}
+.cell-content .mui-paper-container {
+  position: relative;
+}
+.cell.is-empty {
+  background-color: #f9f9f9;
+  color: #f9f9f9;
+  line-height: 3;
+  font-size: 1rem;
+}
+.cell.is-empty .cell-content {
+  background-color: #f9f9f9;
+  border: 1px solid #ffffff;
+}
+.cell.is-empty:hover .cell-content {
+  border: 1px solid #e3e3e3;
+}
+.cell.is-special .special-tw {
+  border-color: red;
+}
+.cell.is-special .tile-set {
+  color: #fff;
+}
+.cell.is-special .special-tw:hover,
+.cell.is-special .special-tw.tile-set {
+  background-color: red;
+}
+.cell.is-special .special-dl {
+  border-color: blue;
+}
+.cell.is-special .special-dl:hover,
+.cell.is-special .special-dl.tile-set {
+  background-color: blue;
+}
+.cell.is-special .special-dw {
+  border-color: teal;
+}
+.cell.is-special .special-dw:hover,
+.cell.is-special .special-dw.tile-set {
+  background-color: teal;
+}
+.cell.is-special .special-tl {
+  border-color: brown;
+}
+.cell.is-special .special-tl:hover,
+.cell.is-special .special-tl.tile-set {
+  background-color: brown;
+}
+.cell.is-special .cell-content:hover {
+  color: #ffffff;
+}
+.cell.is-drop-target .cell-content {
+  border-style: dashed;
+}
+.cell.is-drop-target.is-empty .cell-content {
+  border-style: dashed;
+  border-color: #858585;
+}
+.cell.is-not-drag-target {
+  opacity: .1;
+  cursor: no-drop;
+}
+
+/*# sourceMappingURL=main.css.map */

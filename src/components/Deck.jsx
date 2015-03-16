@@ -1,6 +1,7 @@
 import lodash from 'lodash'
 
 import React from 'react';
+import {DragDropMixin} from 'react-dnd'
 
 import {Paper, Mixins} from 'material-ui'
 
@@ -12,6 +13,8 @@ const PlayerData = React.createClass({
         data: React.PropTypes.object.isRequired,
         color: React.PropTypes.string.isRequired
     },
+
+    displayName: 'PlayerData',
 
     render(){
         let {data, color} = this.props
@@ -32,6 +35,8 @@ const PlayerList = React.createClass({
     propTypes: {
         players: React.PropTypes.arrayOf(React.PropTypes.object)
     },
+
+    displayName: 'PlayerList',
 
     colors: [
         'red',
@@ -62,21 +67,88 @@ const PlayerList = React.createClass({
 
 
 /**
+ * Key used to register this component type as a drag n' drop item
+ * @type {String}
+ */
+const DND_TILE = 'tile'
+
+const itemDragSource = {
+  beginDrag(component) {
+
+    return {
+      item: {
+        points: component.props.points,
+        letter: component.props.letter
+      },
+      effectsAllowed: ['move', 'other']
+    };
+  },
+  canDrag(component){
+    if (component.state.inWorkingSet) return false
+    return true
+  },
+  endDrag(component, dropEffect){
+    if ('other' === dropEffect) return;
+    component.setInWorkingSet()
+  }
+};
+
+/**
  * A tile
  */
 
 const Tile = React.createClass({
+
+    mixins: [DragDropMixin, Mixins.Classable],
+
+    displayName: 'Tile',
 
     propTypes: {
         points: React.PropTypes.number.isRequired,
         letter: React.PropTypes.string.isRequired,
     },
 
+    statics: {
+      configureDragDrop(register) {
+        register(DND_TILE, {
+          dragSource: itemDragSource
+        });
+      }
+    },
+
+    getInitialState() {
+        return {
+            inWorkingSet: false
+        };
+    },
+
+
+    setInWorkingSet(){
+        this.setState({inWorkingSet: true})
+    },
+
     render(){
         let {letter, points} = this.props
+        let {inWorkingSet} = this.state
+        const { isDragging } = this.getDragState(DND_TILE);
+
+        let opacity = isDragging? 0.2 : 1
+        if (inWorkingSet) {
+            opacity = 0.2
+        }
+
+        let style = {opacity}
+
+        let paperClasses = this.getClasses('tile', {
+            'is-in-working-set': inWorkingSet
+        })
+
         return (
-            <div className="title-cnt">
-                <Paper className="tile" zDepth={1}>
+            <div className="title-cnt" 
+                {...this.dragSourceFor(DND_TILE)} 
+                style={style} >
+
+                <Paper className={paperClasses} zDepth={1}>
                     <span className="tile-letter">{letter}</span>
                     <span className="tile-points">{points}</span>
                 </Paper>

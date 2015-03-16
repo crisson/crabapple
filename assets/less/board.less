@@ -22,17 +22,33 @@
 }
 
 
+.cell-letter {
+    line-height: 80px;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.cell-points {
+    position: absolute;
+    left: 5px;
+    bottom: 0;
+    font-size: .7rem;
+}
 
 .cell-content {
     background-color: #ffffff;
     text-align: center;
     vertical-align: middle;
     display: inline-block;
-    line-height: 3;
     font-size: 1.4rem;
-    height: 100%;
+    // height: 100%;
+    height: 80px;
     width: 100%;
     border: 1px solid #ffffff;
+
+    .mui-paper-container {
+        position: relative;
+    }
 }
 
 .cell.is-empty {
@@ -58,7 +74,11 @@
         border-color: red;
     }
 
-    .special-tw:hover {
+    .tile-set {
+        color: #fff;
+    }
+
+    .special-tw:hover, .special-tw.tile-set  {
         background-color: red;
     }
 
@@ -66,7 +86,7 @@
         border-color: blue;
     }
 
-    .special-dl:hover {
+    .special-dl:hover, .special-dl.tile-set {
         background-color: blue;
     }
 
@@ -74,7 +94,7 @@
         border-color: teal;
     }
 
-    .special-dw:hover {
+    .special-dw:hover, .special-dw.tile-set {
         background-color: teal;
     }
 
@@ -82,7 +102,7 @@
         border-color: brown;
     }
 
-    .special-tl:hover {
+    .special-tl:hover, .special-tl.tile-set {
         background-color: brown;
     }
 
@@ -94,4 +114,22 @@
     // &:hover .cell-content {
     //     border: 1px solid;
     // }
+}
+
+.cell.is-drop-target {
+    .cell-content {
+        border-style: dashed;
+    }
+}
+
+.cell.is-drop-target.is-empty {
+    .cell-content {
+        border-style: dashed;
+        border-color: #858585;
+    }
+}
+
+.cell.is-not-drag-target {
+    opacity: .1;
+    cursor: no-drop;
 }

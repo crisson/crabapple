@@ -176,7 +176,7 @@ export default {
 
         let maxIndex = BOARD_SIZE - 1
 
-        let s = (x, y) => `${x},${y}`
+        let s = (y, x) => `${y},${x}`
         let randCoord = () => 
             [lodash.random(maxIndex), lodash.random(maxIndex)]
 
@@ -201,7 +201,7 @@ export default {
             var i = 0
             do {
                 var [x, y] = randCoord()
-                combo = s(x, y)
+                combo = s(y, x)
 
                 let existing = b[y][x]
                 b[y][x] = lodash.assign({}, existing, {
@@ -241,6 +241,12 @@ export default {
             isCenter: true
         })
 
+        return pieces
+    },
+
+    getEmptyBoard(){
+        var pieces = lodash.fill(new Array(BOARD_SIZE), 1)
+            .map(() => lodash.fill(new Array(BOARD_SIZE), 1))
         return pieces
     },
 

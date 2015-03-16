@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha -r babel/polyfill -R dot  --experimental true 'src/**/*-test.js'",
-    "start": "babel-node src/server"
+    "start": "babel-node src/server",
+    "develop": "gulp"
   },
   "keywords": [
     "babel",

@@ -20,6 +20,8 @@ This app uses a symbolic link from the `node_modules` directory to permit pretti
 
 The default `gulp` task is configured to copy binary static assets to the build folder, compile less & js files, and compile index.jade to index.html.  It will also automatically watch for changes and continually execute these steps.
 
+Run this task with the command `npm run develop`.
+
 I use `harp` (`npm install -g harp`) to serve the build directory.  Feel free to use whichever tool you prefer.
 
 ### Deployment 

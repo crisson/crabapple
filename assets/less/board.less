@@ -21,6 +21,8 @@
     height: 6.66%;
 }
 
+
+
 .cell-content {
     background-color: #ffffff;
     text-align: center;
@@ -31,11 +33,6 @@
     height: 100%;
     width: 100%;
     border: 1px solid #ffffff;
-}
-
-.cell-content:hover {
-    color: #ffffff;
-    background-color: @color;
 }
 
 .cell.is-empty {
@@ -52,6 +49,49 @@
     
     &:hover .cell-content {
         border: 1px solid #e3e3e3;
-
     }
+}
+
+
+.cell.is-special {
+    .special-tw {
+        border-color: red;
+    }
+
+    .special-tw:hover {
+        background-color: red;
+    }
+
+    .special-dl {
+        border-color: blue;
+    }
+
+    .special-dl:hover {
+        background-color: blue;
+    }
+
+    .special-dw {
+        border-color: teal;
+    }
+
+    .special-dw:hover {
+        background-color: teal;
+    }
+
+    .special-tl {
+        border-color: brown;
+    }
+
+    .special-tl:hover {
+        background-color: brown;
+    }
+
+    .cell-content:hover {
+        color: #ffffff;
+        // background-color: @color;
+    }
+
+    // &:hover .cell-content {
+    //     border: 1px solid;
+    // }
 }

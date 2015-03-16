@@ -21,17 +21,39 @@ export default React.createClass({
     propTypes: {
         x: React.PropTypes.number.isRequired,
         y: React.PropTypes.number.isRequired,
-        value: React.PropTypes.string
+        data: React.PropTypes.object
+    },
+
+    chooseColor(){
+
     },
 
     render() {
-        let {value} = this.props
-        let contentClasses = this.getClasses('cell-content', {})
+        let {data} = this.props
+
+        let contentClasses = this.getClasses('cell-content', {
+            'is-special': data.isSpecial,
+            'special-tl': data.key === 'tl',
+            'special-tw': data.key === 'tw',
+            'special-dl': data.key === 'dl',
+            'special-dw': data.key === 'dw',
+            'is-empty': !data.tile
+        })
+
+        let cellClasses = this.getClasses('cell', {
+            'is-empty': !data.tile,
+            'is-special': data.isSpecial
+        })
+
+        var body = (<div>&nbsp;</div>)
+        if (data.tile) {
+            body = (<Paper zDepth={1}> {data.tile.letter} </Paper>)
+        }
 
         return (
-            <div className="cell">
+            <div className={cellClasses}>
                 <span className={contentClasses} >
-                    <Paper zDepth={1}> {value} </Paper>
+                    {body}
                 </span>
             </div>
         );

@@ -5,3 +5,79 @@
     width: 100%;
 }
 
+.tile-lst {
+    display: inline-block;
+    width: 80%;
+    
+    &-content {
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+    }
+}
+
+.tile {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 0;
+    height: 80px;
+    width: 80px;
+    background-color: #f9f9f9;
+    border: 1px solid #f9f9f9;
+
+    &> .mui-paper-container {
+        position: relative;
+    }
+
+    &-letter {
+        text-align: center;
+        vertical-align: middle;
+        display: inline-block;
+        line-height: 80px;
+        font-size: 1.4rem;
+        height: 100%;
+        width: 100%;
+        text-transform: uppercase;
+        // border: 1px solid #ffffff;
+    }
+
+    &-points {
+        position: absolute;
+        bottom: 0;
+        left: 5px;
+        color: #858585;
+        font-size: .7rem;
+    }
+}
+
+.tile:hover {
+    border: 1px solid @color;
+}
+
+.player-lst {
+    width: 10%;
+    text-align: left;
+    // display: inline-block;
+    display: inline-table;
+}
+
+.player-data {
+    display: table-row;
+    width: 100%;
+}
+
+.player-name {
+    display: table-cell;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.player-points {
+    display: table-cell;
+}
+
+.deck-player-name {
+    display: inline-block;
+    margin-bottom: 10px;
+}

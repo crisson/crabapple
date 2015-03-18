@@ -14,12 +14,29 @@ export default React.createClass({
         gameState: React.PropTypes.object.isRequired
     },
 
+    getInitialState() {
+        return {
+            movedTiles: 0
+        };
+    },
+
+    handleTileMove(){
+        let movedTiles = this.state.movedTiles
+        this.setState({movedTiles: movedTiles + 1})
+    },
+
+    hasMinimumWokingSet(){
+        return this.state.movedTiles > 0
+    },
+
     render() {
         let {board, playerInfo} = this.props.gameState
+
         return (
             <div className="content">
                 <div className="top-content">
-                    <Deck players={playerInfo}/>
+                    <Deck players={playerInfo} enableCheck={this.hasMinimumWokingSet()} 
+                        handleTileMove={this.handleTileMove}/>
                 </div>
                 <div className="center-content">
                     <div className="center-content-section center-content-middle">

@@ -230,6 +230,21 @@ module.exports = React.createClass({
         gameState: React.PropTypes.object.isRequired
     },
 
+    getInitialState: function getInitialState() {
+        return {
+            movedTiles: 0
+        };
+    },
+
+    handleTileMove: function handleTileMove() {
+        var movedTiles = this.state.movedTiles;
+        this.setState({ movedTiles: movedTiles + 1 });
+    },
+
+    hasMinimumWokingSet: function hasMinimumWokingSet() {
+        return this.state.movedTiles > 0;
+    },
+
     render: function render() {
         var _props$gameState = this.props.gameState;
         var board = _props$gameState.board;
@@ -241,7 +256,8 @@ module.exports = React.createClass({
             React.createElement(
                 "div",
                 { className: "top-content" },
-                React.createElement(Deck, { players: playerInfo })
+                React.createElement(Deck, { players: playerInfo, enableCheck: this.hasMinimumWokingSet(),
+                    handleTileMove: this.handleTileMove })
             ),
             React.createElement(
                 "div",
@@ -380,7 +396,7 @@ module.exports = React.createClass({
                 pointsDisplay = "x " + data.multiple;
             } else {
                 letterDisplay = data.tile.letter;
-                pointsDisplay = data.tile.points;
+                pointsDisplay = " " + data.tile.points;
             }
 
             body = React.createElement(
@@ -431,7 +447,7 @@ var _materialUi = require("material-ui");
 
 var Paper = _materialUi.Paper;
 var Mixins = _materialUi.Mixins;
-var FlatButton = _materialUi.FlatButton;
+var RaisedButton = _materialUi.RaisedButton;
 
 var Crabapple = _interopRequire(require("@crabapple/service"));
 
@@ -540,7 +556,8 @@ var Tile = React.createClass({
 
     propTypes: {
         points: React.PropTypes.number.isRequired,
-        letter: React.PropTypes.string.isRequired },
+        letter: React.PropTypes.string.isRequired,
+        handleTileMove: React.PropTypes.func },
 
     statics: {
         configureDragDrop: function configureDragDrop(register) {
@@ -557,7 +574,11 @@ var Tile = React.createClass({
     },
 
     setInWorkingSet: function setInWorkingSet() {
-        this.setState({ inWorkingSet: true });
+        var _this = this;
+
+        this.setState({ inWorkingSet: true }, function () {
+            _this.props.handleTileMove();
+        });
     },
 
     render: function render() {
@@ -609,20 +630,24 @@ var TileList = React.createClass({
     displayName: "TileList",
 
     propTypes: {
-        tiles: React.PropTypes.array.isRequired
+        tiles: React.PropTypes.array.isRequired,
+        handleTileMove: React.PropTypes.func
     },
 
     generateTiles: function generateTiles() {
-        return this.props.tiles.map(function (t) {
+        var _this = this;
+
+        return this.props.tiles.map(function (t, idx) {
             var _t = _slicedToArray(t, 2);
 
             var letter = _t[0];
             var points = _t[1];
 
             return React.createElement(Tile, {
-                key: lodash.uniqueId(),
+                key: idx,
                 letter: letter,
-                points: points });
+                points: points,
+                handleTileMove: _this.props.handleTileMove });
         });
     },
 
@@ -654,7 +679,7 @@ module.exports = React.createClass({
 
     getInitialState: function getInitialState() {
         return {
-            checkButtonDisabled: false
+            checkButtonEnabled: undefined
         };
     },
 
@@ -665,8 +690,16 @@ module.exports = React.createClass({
     handleCheckWord: function handleCheckWord() {},
 
     render: function render() {
-        var players = this.props.players;
-        var checkButtonDisabled = this.state.checkButtonDisabled;
+        var _props = this.props;
+        var players = _props.players;
+        var enableCheck = _props.enableCheck;
+        var handleTileMove = _props.handleTileMove;
+        var checkButtonEnabled = this.state.checkButtonEnabled;
+
+        var buttonDisabled = !enableCheck;
+        if (typeof checkButtonEnabled !== "undefined") {
+            buttonDisabled = checkButtonEnabled;
+        }
 
         var classNames = this.getClasses("deck", {});
         var humanPlayerInfo = lodash.find(players, "isHuman");
@@ -674,9 +707,26 @@ module.exports = React.createClass({
         return React.createElement(
             "span",
             { className: classNames },
-            React.createElement(PlayerList, { players: players }),
-            React.createElement(TileList, { tiles: humanPlayerInfo.deck }),
-            React.createElement(FlatButton, { label: "Check Words", primary: true, disabled: checkButtonDisabled })
+            React.createElement(
+                "div",
+                { className: "deck-column" },
+                React.createElement(PlayerList, { players: players })
+            ),
+            React.createElement(
+                "div",
+                { className: "deck-column" },
+                React.createElement(TileList, {
+                    tiles: humanPlayerInfo.deck,
+                    handleTileMove: handleTileMove })
+            ),
+            React.createElement(
+                "div",
+                { className: "deck-column" },
+                React.createElement(RaisedButton, { label: "Check Words",
+                    primary: true,
+                    onClick: this.handleCheckWord,
+                    disabled: buttonDisabled })
+            )
         );
     }
 
@@ -1031,6 +1081,13 @@ module.exports = Object.defineProperties({
 
         return Bacon.fromPromise(p);
     },
+
+    /**
+     * Checks whether a potential word created by the application of certain
+     * tiles to an existing board are acceptable
+     * @return {Array.<Tuple.<Accepted, Failed>>}
+     */
+    checkWord: function checkWord() {},
 
     /**
      * Get possible players

@@ -1,4 +1,4 @@
-## Simple game of Crabapple
+## Simple game of Crabapple (WIP)
 
 Crabapple is a Scrabble-like game.  It follows many of Scrabble's rules, but makes some noteworthy changes.
 - 8/9 letters in your deck.

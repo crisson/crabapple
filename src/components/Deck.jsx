@@ -224,9 +224,15 @@ export default React.createClass({
 
         return (
             <span className={classNames}>
-                <PlayerList players={players}/>
-                <TileList tiles={humanPlayerInfo.deck}/>
-                <FlatButton label="Check Words" primary={true} disabled={checkButtonDisabled}/>
+                <div className="deck-column">
+                    <PlayerList players={players}/>
+                </div>
+                <div className="deck-column">
+                    <TileList tiles={humanPlayerInfo.deck}/>
+                </div>
+                <div className="deck-column">
+                    <FlatButton label="Check Words" primary={true} disabled={checkButtonDisabled}/>
+                </div>
             </span>
         );
     }

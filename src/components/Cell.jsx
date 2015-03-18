@@ -105,7 +105,7 @@ export default React.createClass({
                 pointsDisplay = `x ${data.multiple}`
             } else {
                 letterDisplay = data.tile.letter
-                pointsDisplay = data.tile.points
+                pointsDisplay = ` ${data.tile.points}`
             }
 
             body = (

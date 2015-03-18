@@ -235,7 +235,6 @@ export default React.createClass({
 
         return (
             <span className={classNames}>
-                <PlayerList players={players}/>
                 <div className="deck-column">
                     <PlayerList players={players}/>
                 </div>

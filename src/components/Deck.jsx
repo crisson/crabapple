@@ -236,13 +236,21 @@ export default React.createClass({
         return (
             <span className={classNames}>
                 <PlayerList players={players}/>
-                <TileList 
-                    tiles={humanPlayerInfo.deck}
-                    handleTileMove={handleTileMove}/>
-                <RaisedButton label="Check Words" 
-                    primary={true} 
-                    onClick={this.handleCheckWord}
-                    disabled={buttonDisabled}/>
+                <div className="deck-column">
+                    <PlayerList players={players}/>
+                </div>
+                <div className="deck-column">
+                    <TileList 
+                        tiles={humanPlayerInfo.deck}
+                        handleTileMove={handleTileMove}/>
+                </div>
+                <div className="deck-column">
+                    
+                    <RaisedButton label="Check Words" 
+                        primary={true} 
+                        onClick={this.handleCheckWord}
+                        disabled={buttonDisabled}/>
+                </div>
             </span>
         );
     }

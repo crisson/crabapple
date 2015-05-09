@@ -17,20 +17,20 @@
   "author": "Crisson Jno-Charles",
   "license": "MIT",
   "dependencies": {
-    "baconjs": "^0.7.53",
+    "bluebird": "^2.9.25",
     "localforage": "^1.2.2",
     "lodash": "^3.5.0",
     "material-ui": "^0.7.2",
     "react": "~0.13.2",
-    "react-bacon": "0.0.4",
     "react-dnd": "^0.9.7",
     "react-draggable2": "^0.5.1",
     "react-tap-event-plugin": "^0.1.6",
+    "reflux": "^0.2.7",
     "superagent": "^1.1.0"
   },
   "devDependencies": {
     "babel": "^5.2.17",
-    "babelify": "^5.0.3",
+    "babelify": "^6.0.2",
     "browserify": "^9.0.3",
     "chai": "^2.1.0",
     "chai-things": "^0.2.0",

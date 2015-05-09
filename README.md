@@ -1,4 +1,4 @@
-## Simple game of Crabapple
+## Simple game of Crabapple (WIP)
 
 Crabapple is a Scrabble-like game.  It follows many of Scrabble's rules, but makes some noteworthy changes.
 - 8/9 letters in your deck.
@@ -23,6 +23,9 @@ The default `gulp` task is configured to copy binary static assets to the build 
 Run this task with the command `npm run develop`.
 
 I use `harp` (`npm install -g harp`) to serve the build directory with `harp server build/`.  Feel free to use whichever tool you prefer.
+
+the `develop` script also starts the static file server `harp`.
+
 
 ### Deployment 
 

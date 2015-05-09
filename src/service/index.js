@@ -316,6 +316,15 @@ export default {
     },
 
     /**
+     * Checks whether a potential word created by the application of certain
+     * tiles to an existing board are acceptable
+     * @return {Array.<Tuple.<Accepted, Failed>>}
+     */
+    checkWord(){
+
+    },
+
+    /**
      * Get possible players
      * @return {[type]} [description]
      */

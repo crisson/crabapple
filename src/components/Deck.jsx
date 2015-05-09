@@ -3,7 +3,7 @@ import lodash from 'lodash'
 import React from 'react';
 import {DragDropMixin} from 'react-dnd'
 
-import {Paper, Mixins, FlatButton} from 'material-ui'
+import {Paper, Mixins, RaisedButton} from 'material-ui'
 
 import Crabapple from '@crabapple/service'
 
@@ -106,6 +106,7 @@ const Tile = React.createClass({
     propTypes: {
         points: React.PropTypes.number.isRequired,
         letter: React.PropTypes.string.isRequired,
+        handleTileMove: React.PropTypes.func,
     },
 
     statics: {
@@ -124,7 +125,9 @@ const Tile = React.createClass({
 
 
     setInWorkingSet(){
-        this.setState({inWorkingSet: true})
+        this.setState({inWorkingSet: true}, () => {
+            this.props.handleTileMove()
+        })
     },
 
     render(){
@@ -162,17 +165,19 @@ const TileList = React.createClass({
     displayName: 'TileList',
 
     propTypes: {
-        tiles: React.PropTypes.array.isRequired
+        tiles: React.PropTypes.array.isRequired,
+        handleTileMove: React.PropTypes.func
     },
 
     generateTiles(){
-        return this.props.tiles.map(t => {
+        return this.props.tiles.map((t, idx) => {
             let [letter, points] = t
             return (
                 <Tile 
-                    key={lodash.uniqueId()} 
+                    key={idx} 
                     letter={letter} 
-                    points={points}/>
+                    points={points}
+                    handleTileMove={this.props.handleTileMove}/>
             )
         })
     },
@@ -191,6 +196,7 @@ const TileList = React.createClass({
     }
 })
 
+
 export default React.createClass({
 
     displayName: 'Deck',
@@ -198,13 +204,12 @@ export default React.createClass({
     mixins: [Mixins.Classable],
 
     getDefaultProps() {
-        return {
-        };
+        return {};
     },
 
     getInitialState() {
         return {
-            checkButtonDisabled:  false
+            checkButtonEnabled: undefined
         };
     },
 
@@ -217,8 +222,14 @@ export default React.createClass({
     },
 
     render() {
-        let {players} = this.props
-        let {checkButtonDisabled} = this.state
+        let {players, enableCheck, handleTileMove} = this.props
+        let {checkButtonEnabled} = this.state
+
+        var buttonDisabled = !enableCheck
+        if (typeof checkButtonEnabled !== 'undefined') {
+             buttonDisabled = checkButtonEnabled
+        }
+
         let classNames = this.getClasses('deck', {})
         let humanPlayerInfo = lodash.find(players, 'isHuman')
 
@@ -228,10 +239,16 @@ export default React.createClass({
                     <PlayerList players={players}/>
                 </div>
                 <div className="deck-column">
-                    <TileList tiles={humanPlayerInfo.deck}/>
+                    <TileList 
+                        tiles={humanPlayerInfo.deck}
+                        handleTileMove={handleTileMove}/>
                 </div>
                 <div className="deck-column">
-                    <FlatButton label="Check Words" primary={true} disabled={checkButtonDisabled}/>
+                    
+                    <RaisedButton label="Check Words" 
+                        primary={true} 
+                        onClick={this.handleCheckWord}
+                        disabled={buttonDisabled}/>
                 </div>
             </span>
         );

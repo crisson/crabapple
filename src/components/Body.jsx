@@ -1,5 +1,6 @@
 import React from 'react';
-import BaconMixin from 'react-bacon'
+
+import GameStore from '../service/game-store'
 
 import Deck from './Deck.jsx'
 import Board from './Board.jsx'
@@ -7,8 +8,6 @@ import Board from './Board.jsx'
 export default React.createClass({
 
     displayName: 'Body',
-
-    Mixins: [BaconMixin],
 
     propTypes: {
         gameState: React.PropTypes.object.isRequired
@@ -28,6 +27,8 @@ export default React.createClass({
     hasMinimumWokingSet(){
         return this.state.movedTiles > 0
     },
+
+    componentDidMount(){},
 
     render() {
         let {board, playerInfo} = this.props.gameState

@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "babel": "^5.2.17",
+    "babel-runtime": "^5.2.17",
     "babelify": "^6.0.2",
     "browserify": "^9.0.3",
     "chai": "^2.1.0",

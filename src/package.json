@@ -1,5 +1,4 @@
 {
-  "name": "client",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +10,10 @@
   "private": true,
   "license": "MIT",
   "browserify": {
-	"transform": ["babelify"]
+    "transform": [
+      ["babelify", {
+        "optional": ["runtime"]
+      }]
+    ]
   }
 }

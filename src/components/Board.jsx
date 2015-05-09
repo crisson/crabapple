@@ -1,14 +1,13 @@
 import lodash from 'lodash'
 
 import React from 'react';
-import BaconMixin from 'react-bacon'
 
 import {Paper} from 'material-ui'
 import {DragDropMixin} from 'react-dnd'
 
 import Cell from './Cell.jsx'
 
-import Crabapple from '@crabapple/service'
+import GameStore from '@crabapple/service/game-store'
 
 const itemDropTarget = {
   acceptDrop(component, item) {
@@ -26,7 +25,7 @@ export default React.createClass({
 
     displayName: 'Board',
 
-    mixins: [BaconMixin, DragDropMixin],
+    mixins: [DragDropMixin],
 
     propTypes:{
         board: React.PropTypes.array
@@ -34,7 +33,8 @@ export default React.createClass({
 
     getInitialState() {
         return {
-            workingSet: Crabapple.getEmptyBoard()
+            workingSet: GameStore.getEmptyBoard(),
+            words: new Set()
         };
     },
 
@@ -48,17 +48,9 @@ export default React.createClass({
 
     words: new Set(),
 
-    componentDidMount(){
-        let bus = Crabapple.retrieve()
-
-        bus.onValue(words => {
-            this.words = words
-        })
-
-        bus.onError((error) => {
-            this.setState({error: error.message})
-        })
-
+    async componentDidMount(){
+        let words = await GameStore.retrieve()
+        this.setState({words});
     },
 
     makeCells(isDragging, isHovering){
@@ -72,10 +64,10 @@ export default React.createClass({
                     cd = lodash.assign({}, cellData, ws)
                 }
                 var cell = (
-                    <Cell key={key} 
-                        x={x} 
-                        y={y} 
-                        data={cd} 
+                    <Cell key={key}
+                        x={x}
+                        y={y}
+                        data={cd}
                         isDragging={isDragging}
                         isHovering={isHovering}
                         onDrop={this.onDrop} />

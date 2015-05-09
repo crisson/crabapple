@@ -1,22 +1,35 @@
 import React from 'react';
+import Reflux from 'reflux'
 import {AppCanvas, AppBar, FlatButton, FontIcon} from 'material-ui'
+
+import lodash from 'lodash'
 
 import Body from '@crabapple/components/Body.jsx'
 import Spinner from '@crabapple/components/Spinner.jsx'
 
-import Crabapple from '@crabapple/service'
+import GameStore from '@crabapple/service/game-store'
+import GameActions from '@crabapple/service/game-actions'
 
 export default React.createClass({
 
-    displayName: 'App',
+    displayName: 'Homepage',
+
+    mixins: [Reflux.ListenerMixin],
 
     getInitialState() {
-        return {};
+        return {
+            gameState: {}
+        };
     },
 
-    componentDidMount(){
-        let gs = Crabapple.getOrCreateGame()
-        gs.onValue(gameState => this.setState({gameState}))
+    async componentDidMount(){
+        this.listenTo(GameStore, this.onLoad)
+        GameActions.load()
+        // this.setState(gameState)
+    },
+
+    onLoad(gameState){
+        this.setState({gameState})
     },
 
     render() {
@@ -30,7 +43,7 @@ export default React.createClass({
         )
 
         var content = (<Spinner />)
-        if (gameState) {
+        if (!lodash.isEmpty(gameState)) {
             content = <Body gameState={gameState}/>
         }
 
@@ -40,7 +53,6 @@ export default React.createClass({
                 <AppCanvas className="wrapper">
                     {content}
                 </AppCanvas>
-                
             </div>
         );
     }

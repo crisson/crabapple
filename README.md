@@ -22,7 +22,7 @@ The default `gulp` task is configured to copy binary static assets to the build 
 
 Run this task with the command `npm run develop`.
 
-I use `harp` (`npm install -g harp`) to serve the build directory.  Feel free to use whichever tool you prefer.
+I use `harp` (`npm install -g harp`) to serve the build directory with `harp server build/`.  Feel free to use whichever tool you prefer.
 
 ### Deployment 
 
